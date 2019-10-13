@@ -3,6 +3,10 @@ doctrine:
         # configure these for your database server
         driver: 'pdo_mysql'
         server_version: '5.7'
+        #user: 'root'
+        #password: 'root'
+        #host: 'localhost'
+        charset: utf8
         default_table_options:
             charset: utf8
             collate: utf8_unicode_ci
