@@ -26,7 +26,7 @@ class DefaultController extends AbstractController
             $feed = new EnglishFeed($projectDir);
 
             if($feedData = $feed->getFeedData()) {
-                $topWords = implode(", ", $feedData['top_words']);
+
                 $feedItems = [];
                 $xml = json_decode($feedData['xml']);
 
@@ -49,7 +49,7 @@ class DefaultController extends AbstractController
         }
 
         return $this->render('default/homepage.html.twig', [
-            'topWords' => $topWords,
+            'topWords' => $feedData['top_words'],
             'feedItems' => $feedItems
         ]);
     }

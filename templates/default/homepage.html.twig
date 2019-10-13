@@ -5,16 +5,19 @@
 {% block body %}
 
     {% if app.user %}
-        <div class="mb-3">
+        <div class="mb-3" style="padding: 30px;">
+
             <!-- top words -->
             {% if topWords is defined %}
+                <h4>Top Words:</h4>
 
-            <h4>Top words list:</h4>
-
-            {{topWords}}
-            <br />
+                {% for topWord in topWords %}
+                    {{loop.index}}. {{topWord}} <br />
+                {% endfor %}
 
             {% endif %}
+
+            <br />
 
             <!-- feed items -->
             {% if feedItems is defined %}
