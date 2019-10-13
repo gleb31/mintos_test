@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <h4>Register</h4>
+    <div id="duplicate-email-error" class="msg-error" style="display: none;">
+        {{ 'email.not_unique_email'|trans }}
+    </div>
+    {{ form_start(registrationForm, {'attr': {'id': 'registration_form'}}) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword) }}
+        <button class="btn" id="register-button" type="button">Register</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}
+
+{% block javascripts %}
+
+<script language="JavaScript">
+
+    $(document).ready(function() {
+
+        function isValidEmail() {
+            var testEmail = $('#registration_form_email').val();
+            var regExpEmail = /\S+@\S+\.\S+/; // simple
+            return regExpEmail.test(testEmail);
+        }
+
+        function checkingDuplicate() {
+            var $form = $(this);
+            var $inputs = $form.find("input, button");
+            $inputs.prop("disabled", true);
+
+            var request = $.ajax({
+                type: "POST",
+                url: "{{ path('registration_validate_email') }}",
+                dataType: "json",
+                data: {email: $('#registration_form_email').val()}
+            });
+
+            request.done(function (response, textStatus, jqXHR) {
+                console.log("request.done");
+                console.log(response);
+                if (response.duplicate == true) {
+                    $("#duplicate-email-error").show();
+                } else {
+                    $("#duplicate-email-error").hide();
+                }
+            });
+
+            request.always(function () {
+                $inputs.prop("disabled", false);
+            });
+        }
+
+        $('#registration_form_email').focusout(function (e) {
+            if(isValidEmail()) {
+                checkingDuplicate();
+            }
+        });
+
+        $('#register-button').click(function(e){
+            e.preventDefault();
+            if(isValidEmail()) {
+                checkingDuplicate();
+                if($("#duplicate-email-error").is(":hidden")) {
+                    $("#registration_form").submit();
+                }
+            }
+        });
+    });
+
+</script>
+{% endblock %}

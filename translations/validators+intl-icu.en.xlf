@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="email.not_valid_email">
+                <source>email.not_valid_email</source>
+                <target>Invalid email</target>
+            </trans-unit>
+            <trans-unit id="email.not_unique_email">
+                <source>email.not_unique_email</source>
+                <target>There is already an account with this email</target>
+            </trans-unit>
+            <trans-unit id="password.blank">
+                <source>password.blank</source>
+                <target>Please enter a password</target>
+            </trans-unit>
+            <trans-unit id="password.limit">
+                <source>password.limit</source>
+                <target>Your password should be at least {count} characters</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

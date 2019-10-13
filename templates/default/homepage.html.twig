@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home page{% endblock %}
+
+{% block body %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            <!-- top words -->
+            {% if topWords is defined %}
+
+            <h4>Top words list:</h4>
+
+            {{topWords}}
+            <br />
+
+            {% endif %}
+
+            <!-- feed items -->
+            {% if feedItems is defined %}
+
+            <h4>Feed Items:</h4>
+
+            {% for feed in feedItems %}
+            <a href="{{ feed.href }}" target="_new">{{ feed.title|raw }}</a>
+            <hr>
+            {{ feed.author_name }} - ( {{ feed.updated }} ) <br />
+            {{ feed.summary|raw }}
+            <br />
+            {% endfor %}
+
+            {% endif %}
+        </div>
+    {% else %}
+        <div class="mb-3">
+            Only registered users can view feed. <br />
+
+            Please <a href="{{ path('security_login') }}">login</a> or
+            <a href="{{ path('registration_register') }}">register</a>.
+        </div>
+    {% endif %}
+
+{% endblock %}
