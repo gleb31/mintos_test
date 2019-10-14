@@ -14,6 +14,10 @@
                 <source>email.not_unique_email</source>
                 <target>There is already an account with this email</target>
             </trans-unit>
+            <trans-unit id="login.email_not_found">
+                <source>login.email_not_found</source>
+                <target>Email could not be found.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
