@@ -8,7 +8,7 @@
             </trans-unit>
             <trans-unit id="label.password">
                 <source>label.password</source>
-                <target>Plain password</target>
+                <target>Password</target>
             </trans-unit>
             <trans-unit id="email.not_unique_email">
                 <source>email.not_unique_email</source>
