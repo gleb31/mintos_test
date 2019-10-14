@@ -82,6 +82,8 @@ class EnglishFeed
             foreach ($feedData->entry as $rowRow) {
 				// skip id field for rows
 				// $this->_parseString($rowRow->id);
+                // skip link field for rows
+                // $this->_parseString($rowRow->link);
                 $this->_parseString($rowRow->title);
                 $this->_parseString($rowRow->author->name);
                 $this->_parseString($rowRow->summary);
