@@ -134,7 +134,7 @@ class EnglishFeed
         $string = htmlspecialchars_decode($string);
         $string = strip_tags($string);
 
-		$string = preg_replace("/\d+/", '', $string);
+        $string = preg_replace("/\d+/", '', $string);
         $string = str_replace('..', '.', $string);
         $string = str_replace(['?', '\'', '!', '©', '…', '"', '='], '', $string);
         $string = str_replace(['http://','https://'],[''],$string);
