@@ -9,6 +9,7 @@ class EnglishFeed
 {
     const FEED_URL = "https://www.theregister.co.uk/software/headlines.atom";
     const LIMIT_TOP_WORDS = 10;
+    const CACHE_TIME = 600; // sec
 
     protected $_folder = '/var/cache/englishFeed/';
     protected $_allWords = [];
@@ -32,7 +33,6 @@ class EnglishFeed
      */
     public function getFeedData()
     {
-        // check today cache
         if ($cacheResult = $this->_readCache()) {
             return $cacheResult;
         }
@@ -138,7 +138,7 @@ class EnglishFeed
 
         $string = preg_replace("/\d+/", '', $string);
         $string = str_replace('..', '.', $string);
-        $string = str_replace(['?', '\'', '!', '©', '…', '"', '='], '', $string);
+        $string = str_replace(['?', '!', '©', '…', '"', '='], '', $string);
         $string = str_replace(['http://','https://'],[''],$string);
 
         // convert to ;
@@ -186,7 +186,7 @@ class EnglishFeed
     protected function _readCache()
     {
         $fullName = $this->_getFullFileName();
-        if (file_exists($fullName)) {
+        if (file_exists($fullName) && filemtime($fullName) > (time() - self::CACHE_TIME)) {
             $cache = file_get_contents($fullName);
             if ($cache) {
                 return json_decode($cache, true);
