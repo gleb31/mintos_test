@@ -1,3 +1,17 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+    path: /
+    controller: App\Controller\DefaultController::index
+        #default:
+        #  template: default/homepage.html.twig
+
+security_login:
+     path: /login
+     controller: App\Controller\SecurityController::login
+
+registration_register:
+      path: /register
+      controller: App\Controller\RegistrationController::index
+
+registration_validate_email:
+    path: /register/validate/email
+    controller: App\Controller\RegistrationController::validateEmail
